@@ -21,10 +21,13 @@
   - Quick to deploy
 - Flexibility
   - Easily scalable
+  - Only use services you need
 - Robustness
   - Deploying accross multiple AZs for redundecy
+  - Scaling on demand
 - Costs
   - Only pay for the resources that you use
+  - Less up-front costs
 
 
 #### AWS?
@@ -50,7 +53,7 @@ Consists of:
 - Ease of use
 - Flexibility
 - Robustness
-- Cost
+- Cost effective
 
 
 #### What is a CDN?
