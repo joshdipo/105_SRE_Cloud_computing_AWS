@@ -8,6 +8,8 @@
 - Amazon Web Services (AWS)
 
 
+## Task
+
 #### What is the role of SRE?
 - Making sure whatever is bein deployed won't crash or cause any other problems
 - If something does crash or if there are other problems then their role is to figure out what the problem is as quick as possible
