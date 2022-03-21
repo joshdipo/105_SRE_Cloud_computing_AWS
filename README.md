@@ -35,6 +35,9 @@ Consists of:
 - 84 AZs
 - Across 26 Regions
 
+![image](https://user-images.githubusercontent.com/81766525/159288904-ea568a76-e98b-4db8-83db-c8e591911e39.png)
+
+
 #### Regions VS Availability zones
 - Regions are usually Countries or sections of a continent
   - They are collections of AZs
