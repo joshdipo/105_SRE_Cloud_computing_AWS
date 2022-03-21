@@ -27,7 +27,7 @@
 
 #### AWS?
 - Amazon Web Services
-- On demand clous computing
+- On demand cloud computing
 
 
 #### AWS global infrastructure
