@@ -58,7 +58,7 @@ Consists of:
 
 #### What is a CDN?
 - Content delivery network
-- Delivers content from main server to servers closer to where people are trying to access it
+- Caching content in a server closer to where people are trying to access it to allow for faster access
 
 
 #### On Prem VS Hybrid - On Prem VS Public Cloud
