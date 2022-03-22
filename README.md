@@ -7,7 +7,7 @@
 - Creating github repo to push the markdown doc
 - Amazon Web Services (AWS)
 
-
+---
 ## Task
 
 #### What is the role of SRE?
@@ -70,3 +70,25 @@ Consists of:
   
 - Public cloud
   - Using a service like AWS and using their pre-existing infrastructure to deploy
+
+
+---
+
+
+### Public Cloud
+- Secure it
+- Security groups
+- AWS fil.perm
+- SSH command provided to us by AWS
+
+
+
+### Local Host
+Laptop/Desktop
+- Motherboard
+- CPU
+- GPU
+- Harddrive
+- RAM
+- Audio
+- OS
