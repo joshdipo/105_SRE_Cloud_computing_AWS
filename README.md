@@ -74,19 +74,19 @@ Consists of:
 
 ---
 
+### Public Cloud
+- Secure it
+- Security groups
+- AWS file.perm
+SSH command provided to us by AWS
 
-| **Public Cloud**                    |
-|-------------------------------------|
-|- Secure it <br>- Security groups <br>- AWS fil.perm <br>- AWS fil.perm  |
+![image](https://user-images.githubusercontent.com/81766525/159467049-14f7fb23-4206-490f-ad48-56def2c2019c.png)
 
-
-
-### Local Host
-Laptop/Desktop
+Laptop/desktop
 - Motherboard
 - CPU
 - GPU
 - Harddrive
-- RAM
+- Ram
 - Audio
-- OS
+
