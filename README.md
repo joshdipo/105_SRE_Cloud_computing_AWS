@@ -97,14 +97,25 @@ Laptop/desktop
 ## Launching AWS Instance
 ### Local setup
 - Put the SSH key into the .ssh folder
+- run 'chmod 400 105.pem' to change the '105.prem' file to readonly
 
 ### AWS Setup
-- Select EC2
-- Select "Launch new instance"
-- Select Instance OS
-- Select resources
-- Setup rules
+- Select EC2 instance
+- Select instance OS
+  - Choose ubuntu 18.04
+- Select subnet 'DevOpsStudent 1a'
+- Select resources 
+  - default storage
+  - family t2 micro
+- Add tags (set name of instance)
+- Enable public ip
+- Setup rules (create security groups to allow port 22 (SSH) and port 80 (HTTP, use my ip))
+- select 104a
 
 ### Once running
-- run 'chmod 400 105.pem' to change the '105.prem' file to readonly
 - run 'ssh -i "105.pem" ubuntu@ec2-54-216-127-89.eu-west-1.compute.amazonaws.com' to connect to the instance from the localhost
+
+- run 'sudo apt-get update -y'
+- run 'sudo apt-get upgrade -y'
+- run 'sudo apt-get install nginx -y'
+- Check that nginx has installed correctly by checking the public ip in a browser
