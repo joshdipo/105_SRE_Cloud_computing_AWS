@@ -75,11 +75,9 @@ Consists of:
 ---
 
 
-### Public Cloud
-- Secure it
-- Security groups
-- AWS fil.perm
-- SSH command provided to us by AWS
+| **Public Cloud**                    |
+|-------------------------------------|
+|- Secure it <br>- Security groups <br>- AWS fil.perm <br>- AWS fil.perm  |
 
 
 
