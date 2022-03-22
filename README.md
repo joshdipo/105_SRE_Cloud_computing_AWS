@@ -4,10 +4,13 @@
 #### Cloud computing
 #### AWS Services
 
+---
+
 - Creating github repo to push the markdown doc
 - Amazon Web Services (AWS)
 
 ---
+
 ## Task
 
 #### What is the role of SRE?
@@ -71,7 +74,6 @@ Consists of:
 - Public cloud
   - Using a service like AWS and using their pre-existing infrastructure to deploy
 
-
 ---
 
 ### Public Cloud
@@ -90,3 +92,19 @@ Laptop/desktop
 - Ram
 - Audio
 
+---
+
+## Launching AWS Instance
+### Local setup
+- Put the SSH key into the .ssh folder
+
+### AWS Setup
+- Select EC2
+- Select "Launch new instance"
+- Select Instance OS
+- Select resources
+- Setup rules
+
+### Once running
+- run 'chmod 400 105.pem' to change the '105.prem' file to readonly
+- run 'ssh -i "105.pem" ubuntu@ec2-54-216-127-89.eu-west-1.compute.amazonaws.com' to connect to the instance from the localhost
