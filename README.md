@@ -150,3 +150,28 @@ Laptop/desktop
 - How to change a file permision `chmod required_permision file_name`
 - Write `w`, read `r`, exe `x`
 - https://chmod-calculator.com/
+
+### Bash scripting - Automate process with the script
+
+```bash
+# create file called provision.sh
+
+#!/bin/bash
+
+# run updates
+sudo apt-get update -y
+
+# run upgrade
+sudo apt-get upgrade -y
+
+# install nginx
+sudo apt-get install nginx -y
+
+# ensure it's running - start nginx
+sudo systemctl start nginx
+
+# enable nginx
+sudo systemctl enable nginx
+```
+- change the file to exe `chmod +x provision.sh`
+- how to run an exe file `./provision.sh`
