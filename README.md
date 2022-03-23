@@ -120,9 +120,11 @@ Laptop/desktop
 - run 'sudo apt-get install nginx -y'
 - Check that nginx has installed correctly by checking the public ip in a browser
 
+---
 
-### Linux Command
+### Linux Commands
 - Using `sudo` before the command elevates the permissions for that command
+- Use `top` to view currently running processes
 - Services
   - How to check the status of a service `systemctl status name_service`
   - How to start a service `sudo systemctl start name_service`
@@ -146,8 +148,8 @@ Laptop/desktop
   - How to delete a folder `sudo rm -rf folder_name` Focefully remove `-rf`
 
 ### File Permisions
-- How to check a file permision `ll`
-- How to change a file permision `chmod required_permision file_name`
+- How to check a file permission `ll`
+- How to change a file permission `chmod required_permission file_name`
 - Write `w`, read `r`, exe `x`
 - https://chmod-calculator.com/
 
@@ -175,3 +177,95 @@ sudo systemctl enable nginx
 ```
 - change the file to exe `chmod +x provision.sh`
 - how to run an exe file `./provision.sh`
+
+---
+### Bash script to automate Tomcat installation
+
+Tomcat ports
+- HTTP 8080
+- HTTPS 8443
+- AJP 8009
+
+Use cases for tomcat:
+- Static page hosting
+- Reverse proxy
+- Dynamic web applications via Java Servlets and JSP
+- Running WebSocket applications
+- Load balancers
+
+
+Bash script Tomcat installation
+
+```bash
+# create file called tomcatSetup.sh
+
+#!/bin/bash
+
+# install nginx
+sudo apt install tomcat9 -y
+
+# ensure it's running - start nginx
+sudo systemctl start tomcat9
+
+# enable nginx
+sudo systemctl enable tomcat9
+
+# allow traffic to port 8080
+sudo ufw allow from any to any port 8080 proto tcp
+```
+- change the file to exe `chmod +x tomcatSetup.sh`
+- how to run an exe file `./tomcatSetup.sh`
+
+---
+
+### Technical Questions
+
+What is a VPC?
+- Vitual Private Cloud
+- It is a secure, isolated private cloud that is hosted within a public cloud
+- Combines the scalability of a public cloud with the isolation of a private cloud
+
+
+What is an Internet Gateway?
+- It is a network "node" that connects two different networks, that use different protocols (rules) for communicating, together
+
+
+What are Route tables?
+- A set of rules called routes that determine where network traffic from your subnet or gateway is directed
+- A route table tells network packets which way they need to go to get to their destination
+
+
+What is a Subnet?
+- A range of IP addresses in your VPC
+- Dividing the network up into two or more networks
+- Makes conecting quicker
+- They can be public or private
+
+
+What is NACL?
+- Network Access Control List
+- Similar to security groups for EC2 instances, but are for networks
+- They can be attatched to one or more subnets within a VPC
+- ACLs monitor and filter traffic moving in and out of a network
+
+
+What is a Security group?
+- A virtual firewall that controls traffic
+- Allows you to set the rules for inbound and outbound traffic
+- What ports are accessible and by what IPs
+
+
+How did you secure your app on the public cloud?
+- Using a security group we allowed only ports that we knew we were used by nginx and Tomcat
+- We only allowed our own IP on SSH
+
+
+What are the outbound rules for a security group by default and why?
+- Allows all outbound IPv4 traffic and IPv6 traffic
+- This is 
+
+
+What is the command to kill a process in linux?
+- Find the process id using `top`
+- run `sudo kill -9 process_id`
+- Alternativly to kill all processes of a given name `sudo killall process_name`
