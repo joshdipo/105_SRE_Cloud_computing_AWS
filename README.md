@@ -119,3 +119,21 @@ Laptop/desktop
 - run 'sudo apt-get upgrade -y'
 - run 'sudo apt-get install nginx -y'
 - Check that nginx has installed correctly by checking the public ip in a browser
+
+
+### Linux Command
+- Using `sudo` before the command elevates the permissions for that command
+- How to check the status of a service `systemctl status name_service`
+- How to start a service `sudo systemctl start name_service`
+- How to stop a service `sudo systemctl stop name_service` If a service is set to start on instance startup, using this will stop the service and the service will not lauch automatically on startup next time
+- How to enable a service `sudo systemctl enable service_name` The service will now start on instance startup
+- How to install a package `sudo apt-get install package_name -y` Using `-y` means that for any decisions that need to made installing the package yes will be selected
+- How to remove a package `sudo apt-get remove package_name -y`
+- How to check all processes `top`
+- Who am I `uname` or `uname -a`
+- Where am I `pwd` Print Working Directory
+- Create a directory `mkdir dir_name`
+- How to check directorys `ls` or `ls -a`
+- How to create file `touch name_file` or `nano file_name`
+- How to check the contents of a file without going inside the file `cat file_name`
+- How to move a file to another location `mv file_name directory_name`
