@@ -275,6 +275,12 @@ What is the command to kill a process in linux?
 
 ## Monolith - N-tier - 2-tier & Microservices Architecture
 
+Scale up on increased data size
+- larger database
+- larger plugin size
+
+Scale out on more users
+
 ### Monolith Architecture
 ![image](images/MonolithARCH.png)
 - Single big service
@@ -300,10 +306,45 @@ What is the command to kill a process in linux?
 ### 2-tier
 - Seperation of interface and data layers
 
+---
 
+## Continuous Integration and Continuous Delivery and Deployment
 
-- Scale up on increased data size
-  - larger database
-  - larger plugin size
+### Continuous Integration
 
-- Scale out on more users
+- Developers will merge and commit code to the master branch multiple times a day
+- There will be a fully automated building and testing process that gives quick feedback
+- Avoids problems with waiting for release day to merge
+
+### Continuous Delivery
+
+- In addition to the steps in CI, there is also automated release of the product
+
+### Continuous Deployment
+
+- In addition to both the steps in delivery and integration, Continuous Deployment automates deploying the product to the customers
+
+---
+
+## SDLC
+
+It’s the process of end to end product development.
+Products need to follow a certain life cycle.
+The Stages are:
+- Planning
+  - Just an idea, only in someone’s head
+
+- Designing
+  - Writing out how the product will look and what it needs.
+
+- Development
+  - Develop an environment that works for all of us. i.e the linux instance we created
+  - Implementing the design.
+
+- Testing
+  - Nothing goes to production without testing.
+  - The test must pass in order to go to the next stage.
+  - Beta versions can happen after testing to get feedback from the user.
+
+- Staging
+  - It’s the holding area before the code gets deployed. The program is packaged and ready, just on hold till the release date. After staging the code is deployed.
