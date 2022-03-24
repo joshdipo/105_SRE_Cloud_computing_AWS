@@ -276,6 +276,7 @@ What is the command to kill a process in linux?
 ## Monolith - N-tier - 2-tier & Microservices Architecture
 
 ### Monolith Architecture
+![image](https://user-images.githubusercontent.com/81766525/159931525-6884846a-43bd-477a-91af-157b55cf39ab.png)
 - Single big service
 - Poor scalability
 - Heavy apps can slow down the start up time
@@ -283,6 +284,7 @@ What is the command to kill a process in linux?
 
 
 ### Micro-services architecture
+![image](https://user-images.githubusercontent.com/81766525/159931612-e2f9a714-2ea7-4d63-82ba-f1c6886c835c.png)
 - Many small independant services
 - For users to not have access to any database
 - They are able to be worked on and updated independantly
@@ -290,7 +292,7 @@ What is the command to kill a process in linux?
 
 
 ### N-tier
-- Divides the application up into logical layers and physical tiers
+- Divides the application up into presentation, processing and data managment, logically and physically
 - Layers are a way seperate responsibilities and manage dependancies
 - A higher layer can use services in a lower layer, but not the other way around
 
