@@ -43,7 +43,7 @@ Consists of:
 - 84 AZs
 - Across 26 Regions
 
-![image](https://user-images.githubusercontent.com/81766525/159288904-ea568a76-e98b-4db8-83db-c8e591911e39.png)
+![image](images/regions.png)
 
 
 #### Regions VS Availability zones
@@ -82,7 +82,7 @@ Consists of:
 - AWS file.pem
 SSH command provided to us by AWS
 
-![image](https://user-images.githubusercontent.com/81766525/159467049-14f7fb23-4206-490f-ad48-56def2c2019c.png)
+![image](images/AWS.png)
 
 Laptop/desktop
 - Motherboard
@@ -276,7 +276,7 @@ What is the command to kill a process in linux?
 ## Monolith - N-tier - 2-tier & Microservices Architecture
 
 ### Monolith Architecture
-![image](https://user-images.githubusercontent.com/81766525/159931525-6884846a-43bd-477a-91af-157b55cf39ab.png)
+![image](images/MonolithARCH.png)
 - Single big service
 - Poor scalability
 - Heavy apps can slow down the start up time
@@ -284,7 +284,7 @@ What is the command to kill a process in linux?
 
 
 ### Micro-services architecture
-![image](https://user-images.githubusercontent.com/81766525/159931612-e2f9a714-2ea7-4d63-82ba-f1c6886c835c.png)
+![image](images/MicroserviceARCH.png)
 - Many small independant services
 - For users to not have access to any database
 - They are able to be worked on and updated independantly
@@ -292,7 +292,7 @@ What is the command to kill a process in linux?
 
 
 ### N-tier
-- Divides the application up into presentation, processing and data managment, logically and physically
+- Divides the application up into logical layers and physical tiers
 - Layers are a way seperate responsibilities and manage dependancies
 - A higher layer can use services in a lower layer, but not the other way around
 
@@ -300,7 +300,7 @@ What is the command to kill a process in linux?
 ### 2-tier
 - Seperation of interface and data layers
 
----
+
 
 - Scale up on increased data size
   - larger database
