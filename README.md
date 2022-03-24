@@ -275,13 +275,11 @@ What is the command to kill a process in linux?
 
 ## Monolith - N-tier - 2-tier & Microservices Architecture
 
-Scale up on increased data size
-- larger database
-- larger plugin size
+Scale up on increased data size including larger database or larger plugin size
 
 Scale out on more users
 
-### Monolith Architecture
+### <br>Monolith Architecture
 ![image](images/MonolithARCH.png)
 - Single big service
 - Poor scalability
