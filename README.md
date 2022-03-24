@@ -1,5 +1,5 @@
 # SRE Intro
-## User Journey
+### User Journey
 ### User Experience
 #### Cloud computing
 #### AWS Services
