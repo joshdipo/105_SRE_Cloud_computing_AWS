@@ -122,7 +122,7 @@ Laptop/desktop
 
 ---
 
-### Linux Commands
+## Linux Commands
 - Using `sudo` before the command elevates the permissions for that command
 - Use `top` to view currently running processes
 - Services
@@ -218,7 +218,7 @@ sudo ufw allow from any to any port 8080 proto tcp
 
 ---
 
-### Technical Questions
+## Technical Questions
 
 What is a VPC?
 - Vitual Private Cloud
@@ -247,6 +247,7 @@ What is NACL?
 - Similar to security groups for EC2 instances, but are for networks
 - They can be attatched to one or more subnets within a VPC
 - ACLs monitor and filter traffic moving in and out of a network
+- On subnets
 
 
 What is a Security group?
@@ -262,10 +263,45 @@ How did you secure your app on the public cloud?
 
 What are the outbound rules for a security group by default and why?
 - Allows all outbound IPv4 traffic and IPv6 traffic
-- This is 
-
+- The inbound traffic is already restricted
+- As it is all outbound it is safe for everyone have access
 
 What is the command to kill a process in linux?
 - Find the process id using `top`
 - run `sudo kill -9 process_id`
 - Alternativly to kill all processes of a given name `sudo killall process_name`
+
+---
+
+## Monolith - N-tier - 2-tier & Microservices Architecture
+
+### Monolith Architecture
+- Single big service
+- Poor scalability
+- Heavy apps can slow down the start up time
+- Each update results in redeploying the full stack app
+
+
+### Micro-services architecture
+- Many small independant services
+- For users to not have access to any database
+- They are able to be worked on and updated independantly
+- Adding features/services requires less refactoring
+
+
+### N-tier
+- Divides the application up into logical layers and physical tiers
+- Layers are a way seperate responsibilities and manage dependancies
+- A higher layer can use services in a lower layer, but not the other way around
+
+
+### 2-tier
+- Seperation of interface and data layers
+
+---
+
+- Scale up on increased data size
+  - larger database
+  - larger plugin size
+
+- Scale out on more users
