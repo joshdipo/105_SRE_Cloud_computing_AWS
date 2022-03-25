@@ -346,3 +346,12 @@ The Stages are:
 
 - Staging
   - It’s the holding area before the code gets deployed. The program is packaged and ready, just on hold till the release date. After staging the code is deployed.
+
+---
+
+## Github
+Best practices and tips
+- One person reviewing is always the best.
+- Someone who is more knowledgeable should merge.
+- Using `git` you will get a list of all the commands that can be performed on git
+- If you delete the .git file you need to reconnect to the github remote before pushing the code back to github.
