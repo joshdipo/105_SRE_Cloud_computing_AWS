@@ -223,7 +223,7 @@ sudo ufw allow from any to any port 8080 proto tcp
 What is a VPC?
 - Vitual Private Cloud
 - It is a secure, isolated private cloud that is hosted within a public cloud
-- Combines the scalability of a public cloud with the isolation of a private cloud
+- Combines the scalability of a public cloud with the isolation of your data a private cloud
 
 
 What is an Internet Gateway?
@@ -241,6 +241,7 @@ What is a Subnet?
 - Dividing the network up into two or more networks
 - Makes conecting quicker
 - They can be public or private
+- They cannot span availability zones
 
 
 What is NACL?
@@ -355,4 +356,48 @@ Best practices and tips
 - One person reviewing is always the best.
 - Someone who is more knowledgeable should merge.
 - Using `git` you will get a list of all the commands that can be performed on git
-- If you delete the .git file you need to reconnect to the github remote before pushing the code back to github.
+- If you delete the .git file you need to reconnect to the github remote before pushing the code back to github
+
+---
+
+## S3
+- S3 is a simple storage service
+
+S3 standard class
+- Used for data you need constant access to
+
+S3 glacier class
+- Takes time to retrieve
+- Used for long term storage of very infrequently accessed data
+
+
+```bash
+#setup to use S3 from command line
+
+#update and upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+
+#install python 3.7
+sudo apt-get install python
+sudo apt-get install python3-pip
+
+alias python=python3
+
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+
+#install aws cli
+python3 -m pip install awscli
+
+sudo apt install awscli
+
+
+#configure awscli
+input access key id
+input secret access key
+input regoin name (eu-west-1)
+input output format (json)
+```
