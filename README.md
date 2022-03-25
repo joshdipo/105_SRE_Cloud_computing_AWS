@@ -227,7 +227,8 @@ What is a VPC?
 
 
 What is an Internet Gateway?
-- It is a network "node" that connects two different networks, that use different protocols (rules) for communicating, together
+- It is a VPC component that allows communication between the VPC and the internet
+- Enables resources like EC2 instaances to connect to the internet
 
 
 What are Route tables?
