@@ -370,7 +370,6 @@ S3 glacier class
 - Takes time to retrieve
 - Used for long term storage of very infrequently accessed data
 
-
 ```bash
 #setup to use S3 from command line
 
@@ -400,4 +399,21 @@ input access key id
 input secret access key
 input regoin name (eu-west-1)
 input output format (json)
+```
+
+```bash
+#creating a bucket on s3
+aws s3 mb s3://bucket_name
+
+#uploading data from ec2 to s3
+aws s3 cp filename s3://s3_destination
+
+#download from s3
+aws s3 cp s3://s3_filepath/filename filename
+
+#delete a file from s3
+aws s3 rm s3://filepath/filename
+
+#delete the bucket
+aws s3 rb s3://bucket_name
 ```
