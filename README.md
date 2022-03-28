@@ -75,7 +75,7 @@ Consists of:
   - Using a service like AWS and using their pre-existing infrastructure to deploy
 
 ---
-
+# Cloud Computing
 ### Public Cloud
 - Secure it
 - Security groups
@@ -275,7 +275,7 @@ What is the command to kill a process in linux?
 
 ---
 
-## Monolith - N-tier - 2-tier & Microservices Architecture
+# Monolith - N-tier - 2-tier & Microservices Architecture
 
 Scale up on increased data size including larger database or larger plugin size
 
@@ -308,7 +308,7 @@ Scale out on more users
 
 ---
 
-## Continuous Integration and Continuous Delivery and Deployment
+# Continuous Integration and Continuous Delivery and Deployment
 
 ### Continuous Integration
 
@@ -326,7 +326,7 @@ Scale out on more users
 
 ---
 
-## SDLC
+# SDLC
 
 It’s the process of end to end product development.
 Products need to follow a certain life cycle.
@@ -351,7 +351,7 @@ The Stages are:
 
 ---
 
-## Github
+# Github
 Best practices and tips
 - One person reviewing is always the best.
 - Someone who is more knowledgeable should merge.
@@ -360,8 +360,8 @@ Best practices and tips
 
 ---
 
-## S3
-- S3 is a simple storage service
+# S3
+S3 is a simple storage service on AWS
 
 S3 standard class
 - Used for data you need constant access to
@@ -417,3 +417,53 @@ aws s3 rm s3://filepath/filename
 #delete the bucket
 aws s3 rb s3://bucket_name
 ```
+
+---
+
+# Virtual machines and Containerisation
+
+### Virtual machines
+- Can be very resource heavy
+- Size is big
+- Speed is slow
+- Integration bad
+
+### Containers
+- Shares resources
+- Size is small
+- Speed is fast
+- Integration good
+
+## <br>Docker
+
+### Installing Docker
+Prerequisites
+- Enable CPU virtualisation in your bios
+- In `windows features` turn on `Hyper-Visor`
+
+Installation instructions
+- Download and install docker hub
+  - Should get messege asking you to install WLS2 (windows linux subsystem)
+- Log-in to docker hub
+
+
+### Commands
+- List running containers `docker ps` and their ids
+- Remove a container `docker rm container_id` 
+- `docker run -d -p portnumber image_name` running an image in the terminal and setting ports to use
+- Start container `docker start container_id`
+- Stop container `docker stop container_id`
+- Enter containers terminal `docker exec -it container_id sh`
+- Copy file to docker container `docker cp file_name container_id:file_path_in_container`
+- `-d` detatched
+- `-p` port map
+
+Docker Cheat Sheet https://dockerlabs.collabnix.com/docker/cheatsheet/
+
+### Using Docker hub as a repository
+- Make a commit `docker commit container_id dipojosh/105_sre_josh:tag_name`
+- Push commit to repo `docker push dipojosh/105_sre_josh:tag_name`
+- Pull my repo `docker run -d -p 80:80 dipojosh/105_sre_josh:latest`
+
+### Container life cycle
+![image](images/docker.png)
