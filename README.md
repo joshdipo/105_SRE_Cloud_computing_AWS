@@ -436,7 +436,7 @@ aws s3 rb s3://bucket_name
 
 ## <br>Docker
 - Docker is a containerisation platform
-- You can download "images" off of docker hub and run using containers
+- You can download images off of docker hub and run using containers
 
 ### Installing Docker
 Prerequisites
