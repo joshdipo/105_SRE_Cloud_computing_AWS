@@ -426,13 +426,13 @@ aws s3 rb s3://bucket_name
 - Can be very resource heavy
 - Large size
 - Slow
-- Integration bad
+- Bad integration
 
 ### Containers
 - Shares resources
 - Small size
 - Quick
-- Integration good
+- Good integration
 
 ## <br>Docker
 
@@ -467,3 +467,5 @@ Docker Cheat Sheet https://dockerlabs.collabnix.com/docker/cheatsheet/
 
 ### Container life cycle
 ![image](images/docker.svg)
+
+
