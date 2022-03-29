@@ -424,14 +424,14 @@ aws s3 rb s3://bucket_name
 
 ### Virtual machines
 - Can be very resource heavy
-- Size is big
-- Speed is slow
+- Large size
+- Slow
 - Integration bad
 
 ### Containers
 - Shares resources
-- Size is small
-- Speed is fast
+- Small size
+- Quick
 - Integration good
 
 ## <br>Docker
@@ -450,7 +450,7 @@ Installation instructions
 ### Commands
 - List running containers `docker ps` and their ids
 - Remove a container `docker rm container_id` 
-- `docker run -d -p portnumber image_name` running an image in the terminal and setting ports to use
+- `docker run -d -p portnumber image_name` running an image and setting ports to use
 - Start container `docker start container_id`
 - Stop container `docker stop container_id`
 - Enter containers terminal `docker exec -it container_id sh`
@@ -463,7 +463,7 @@ Docker Cheat Sheet https://dockerlabs.collabnix.com/docker/cheatsheet/
 ### Using Docker hub as a repository
 - Make a commit `docker commit container_id dipojosh/105_sre_josh:tag_name`
 - Push commit to repo `docker push dipojosh/105_sre_josh:tag_name`
-- Pull my repo `docker run -d -p 80:80 dipojosh/105_sre_josh:latest`
+- Pulling and running a repo `docker run -d -p 80:80 dipojosh/105_sre_josh:latest`
 
 ### Container life cycle
-![image](images/docker.png)
+![image](images/docker.svg)
