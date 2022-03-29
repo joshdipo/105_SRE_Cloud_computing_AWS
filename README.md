@@ -421,8 +421,12 @@ aws s3 rb s3://bucket_name
 ---
 
 # Virtual machines and Containerisation
+Containerisation platforms
+- Crio
+- Rocket
+- Docker (the most popular))
 
-### Virtual machines
+### <br>Virtual machines
 - Can be very resource heavy
 - Large size
 - Slow
@@ -433,10 +437,15 @@ aws s3 rb s3://bucket_name
 - Small size
 - Quick
 - Good integration
+<br><br>
+![image](images/containersVSvirtualmachines.jpg)
 
 ## <br>Docker
 - Docker is a containerisation platform
 - You can download images off of docker hub and run using containers
+
+### Docker Architecture
+![image](images/docker.svg)
 
 ### Installing Docker
 Prerequisites
@@ -467,7 +476,65 @@ Docker Cheat Sheet https://dockerlabs.collabnix.com/docker/cheatsheet/
 - Push commit to repo `docker push dipojosh/105_sre_josh:tag_name`
 - Pulling and running a repo `docker run -d -p 80:80 dipojosh/105_sre_josh:latest`
 
-### Container life cycle
-![image](images/docker.svg)
+
+## <br>Automation of custom Docker image creation
+
+### Creating a Docker file to automate the proces of building a customised image - Building a Microservice with Docker
+Automating image building of our customised nginx image
+- Create a `Dockerfile` in the same location where our index.html is
+- Decide which base image to use for your image
 
 
+### Automation script
+```bash
+# select base image (you can also use tags)
+FROM nginx
+
+# Label it - add optional details
+LABEL MAINTAINER=JOSH
+
+# copy index.html to /usr/share/nginx/html/
+COPY index.html /usr/share/nginx/html
+
+# expose the required port - port 80
+EXPOSE 80
+
+# launch the app
+CMD ["nginx", "-g", "daemon off;"]
+# CMD will runthe command in this case to launch the image when we create a container
+```
+Build the image `docker build -t dipojosh/105_sre_nginx_test .`
+
+### Test the image locally to ensure it works
+- Run the image `docker run -p 80:80 dipojosh/105_sre_nginx_test:latest`
+- Check `localhost`
+- Should see our edited index.html page
+
+
+## <br>Building a microservice of our API project
+
+Plan
+- Choose base image to use  https://docs.docker.com/samples/dotnetcore/
+- Copy app into image
+- Launch the app with the correct port
+
+##
+
+Make sure API project has been published already
+
+```bash
+# selecting the base image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+# copying published API prohject to the image
+COPY bin/Release/net6.0/publish/ App/
+
+WORKDIR /App
+ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
+```
+Building the image with `docker build -t dipojosh/105_sre_api .`
+
+### Testing the image
+- Run the image with `docker run -p 5001:80 dipojosh/105_sre_api:latest`
+- Check `localhost:5001/swagger/index.html`
+- Make sure the browser is not trying to use https (remove the s)
