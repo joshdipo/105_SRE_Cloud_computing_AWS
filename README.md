@@ -532,9 +532,11 @@ COPY bin/Release/net6.0/publish/ App/
 WORKDIR /App
 ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 ```
-Building the image with `docker build -t dipojosh/105_sre_api .`
+- The Dockerfie needs to be placed inside the directory with the `.csproj` for out project
+- We then build the image with `docker build -t dipojosh/105_sre_api .` from a terminal inside the same folder
 
 ### Testing the image
 - Run the image with `docker run -p 5001:80 dipojosh/105_sre_api:latest`
 - Check `localhost:5001/swagger/index.html`
 - Make sure the browser is not trying to use https (remove the s)
+- If it works the swagger api ui should be showing
