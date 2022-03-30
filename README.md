@@ -556,16 +556,11 @@ ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 ### <br>K8 Architecture
 ![image](images/components-of-kubernetes.svg)
 
-### K8 Services and Objects
-
-
 ### K8 set up
 - In docker desktop go to settings, then Kubernetes and enable Kubernetes
 - run `kubectl get svc` to check that its running
 
-
 ### K8 commands
-
 - kubectl get service_name - deployment - pod - rs
 
 - kubectl get svc svc_name
