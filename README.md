@@ -486,7 +486,7 @@ Automating image building of our customised nginx image
 
 
 ### Automation script
-```bash
+```docker
 # select base image (you can also use tags)
 FROM nginx
 
@@ -518,11 +518,11 @@ Plan
 - Copy app into image
 - Launch the app with the correct port
 
-##
+
 
 Make sure API project has been published already
 
-```bash
+```docker
 # selecting the base image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
@@ -540,3 +540,247 @@ ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 - Check `localhost:5001/swagger/index.html`
 - Make sure the browser is not trying to use https (remove the s)
 - If it works the swagger api ui should be showing
+
+---
+
+## <br>Kubernetes
+- Also known as K8
+- Benifits
+  - Self healing
+  - Load Balancing and Service Discorvery
+  - Automated rollouts and rollback
+  - Auto Scaling
+  - Autmoatic bin packing
+  - Storage orchestration
+
+### <br>K8 Architecture
+![image](images/components-of-kubernetes.svg)
+
+### K8 Services and Objects
+
+
+### K8 set up
+- In docker desktop go to settings, then Kubernetes and enable Kubernetes
+- run `kubectl get svc` to check that its running
+
+
+### K8 commands
+
+- kubectl get service_name - deployment - pod - rs
+
+- kubectl get svc svc_name
+- kubectl get deploy nginx_deploy
+
+- kubectl get pods
+- kubectl describe pod pod_name
+
+#### Kubernetes Cheat Sheet
+```bash
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
+
+Basic Commands (Beginner):
+  create        Create a resource from a file or from stdin
+  expose        Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
+  run           Run a particular image on the cluster
+  set           Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain       Get documentation for a resource
+  get           Display one or many resources
+  edit          Edit a resource on the server
+  delete        Delete resources by file names, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout       Manage the rollout of a resource
+  scale         Set a new size for a deployment, replica set, or replication controller
+  autoscale     Auto-scale a deployment, replica set, stateful set, or replication controller
+
+Cluster Management Commands:
+  certificate   Modify certificate resources.
+  cluster-info  Display cluster information
+  top           Display resource (CPU/memory) usage
+  cordon        Mark node as unschedulable
+  uncordon      Mark node as schedulable
+  drain         Drain node in preparation for maintenance
+  taint         Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  proxy         Run a proxy to the Kubernetes API server
+  cp            Copy files and directories to and from containers
+  auth          Inspect authorization
+  debug         Create debugging sessions for troubleshooting workloads and nodes
+
+Advanced Commands:
+  diff          Diff the live version against a would-be applied version
+  apply         Apply a configuration to a resource by file name or stdin
+  patch         Update fields of a resource
+  replace       Replace a resource by file name or stdin
+  wait          Experimental: Wait for a specific condition on one or many resources
+  kustomize     Build a kustomization target from a directory or URL.
+
+Settings Commands:
+  label         Update the labels on a resource
+  annotate      Update the annotations on a resource
+  completion    Output shell completion code for the specified shell (bash or zsh)
+
+Other Commands:
+  api-resources Print the supported API resources on the server
+  api-versions  Print the supported API versions on the server, in the form of "group/version"
+  config        Modify kubeconfig files
+  plugin        Provides utilities for interacting with plugins
+  version       Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+```
+
+## <br>YAML
+
+### What are the use cases
+- can be utilised with K8, Docker-compose, Ansible, Cloud-format
+- To codify anything and everthing in order to automate processess
+
+
+### <b><br>Deploying our custom nginx container and servic</b>
+
+<br>Deployment
+```yml
+# YML is case sensitive
+apiVersion: apps/v1 # which api to use for deployment
+kind: Deployment # what kind of service/object you want to create
+
+# What would you like to call it
+metadata:
+  name: nginx-deployment # naming the deployment
+
+spec:
+  selector:
+    matchLabels:
+      app: nginx # look for this label to match with k8 service
+  
+  # Lets create a replica set of this with 2 instances/pods
+  replicas: 3
+
+  # template to use its label for k8 service to launch in the browser
+  template:
+    metadata:
+      labels:
+        app: nginx # this label connects to the service or any other k8 components
+    
+    # lets define the container spec
+    spec:
+      containers:
+      - name: nginx
+        image: dipojosh/105_sre_nginx_test:latest
+        ports:
+        - containerPort: 80
+```
+`kubectl create -f nginx-deploy.yml` to create the deployment
+
+<br>Service
+```yml
+# select the type of API version and type of service/object
+apiVersion: v1
+kind: Service
+
+# metadata for name
+metadata:
+  name: nginx-svc
+  namespace: default # sre
+# specification to include ports selector to connect to the deploy
+spec:
+  ports:
+  - nodePort: 30442 # range is 30000 - 32768
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+# lets define the selector and label to connect to nginx deployment
+  selector:
+    app: nginx # this label connects this service to deployment
+
+  # creating LoadBalancer type of deployment
+  type: LoadBalancer
+```
+`kubectl create -f nginx-svc.yml` to create the service
+
+
+### <b><br><br>Deploying our API container and service</b>
+
+
+<br>Deployment diagram
+<br><br>
+![image](images/deployment-diagram.jpg)
+
+<br>Deployment
+```yml
+# YML is case sensitive
+apiVersion: apps/v1 # which api to use for deployment
+kind: Deployment # what kind of service/object you want to create
+
+# What would you like to call it
+metadata:
+  name: nginx-deployment # naming the deployment
+
+spec:
+  selector:
+    matchLabels:
+      app: apiapp # look for this label to match with k8 service
+  
+  # Lets create a replica set of this with 2 instances/pods
+  replicas: 3
+
+  # template to use its label for k8 service to launch in the browser
+  template:
+    metadata:
+      labels:
+        app: apiapp # this label connects to the service or any other k8 components
+    
+    # lets define the container spec
+    spec:
+      containers:
+      - name: apiapp
+        image: dipojosh/dipojosh/105_sre_api:latest
+        ports:
+        - containerPort: 80
+```
+`kubectl create -f apiapp-deploy.yml` to create the deployment
+
+<br>Service
+```yml
+# select the type of API version and type of service/object
+apiVersion: v1
+kind: Service
+
+# metadata for name
+metadata:
+  name: apiapp-svc
+  namespace: default # sre
+# specification to include ports selector to connect to the deploy
+spec:
+  ports:
+  - nodePort: 30442 # range is 30000 - 32768
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+# lets define the selector and label to connect to nginx deployment
+  selector:
+    app: apiapp # this label connects this service to deployment
+
+  # creating LoadBalancer type of deployment
+  type: LoadBalancer
+```
+`kubectl create -f apiapp-svc.yml` to create the service
+
+
+- Edit a deployment `kubectl edit deploy deployment_name`
+- Delete a deployment `kubectl delete deploy deployment_name`
+- Delete a service `kubectl delete svc service_name`
