@@ -447,6 +447,9 @@ Containerisation platforms
 ### Docker Architecture
 ![image](images/docker.svg)
 
+### <br>Docker Container life cycle
+![image](images/docker-lifecycle.png)
+
 ### Installing Docker
 Prerequisites
 - Enable CPU virtualisation in your bios
