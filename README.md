@@ -125,6 +125,7 @@ Laptop/desktop
 ## Linux Commands
 - Using `sudo` before the command elevates the permissions for that command
 - Use `top` to view currently running processes
+- Creating an alias to make it quicker to use commands `alias {alias_name}="{command_you_want_to_alias}"`
 - Services
   - How to check the status of a service `systemctl status name_service`
   - How to start a service `sudo systemctl start name_service`
@@ -539,7 +540,7 @@ ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 - We then build the image with `docker build -t dipojosh/105_sre_api .` from a terminal inside the same folder
 
 ### Testing the image
-- Run the image with `docker run -p 5001:80 dipojosh/105_sre_api:latest`
+- Run the image with `docker run -p 5001:80 dipojosh/105_sre_api:latest` (doesnt have to use port 5001, just an availabe port)
 - Check `localhost:5001/swagger/index.html`
 - Make sure the browser is not trying to use https (remove the s)
 - If it works the swagger api ui should be showing
@@ -549,7 +550,7 @@ ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 ## <br>Kubernetes
 - Also known as K8
 - Benifits
-  - Self healing: When a node goes down for whatever reason, trafic is diverted from it and a new node is created to take its place
+  - Self healing: When a node goes down for whatever reason, traffic is diverted from it and a new node is created to take its place
   - Load Balancing and Service Discorvery
   - Automated rollouts and rollback
   - Auto Scaling
@@ -782,3 +783,112 @@ spec:
 - Edit a deployment `kubectl edit deploy deployment_name`
 - Delete a deployment `kubectl delete deploy deployment_name`
 - Delete a service `kubectl delete svc service_name`
+
+
+---
+
+# Kubernetes and Docker on ubuntu
+
+Plan for API projectdeployment using kubernetes and docker on AWS
+
+![image](images/kubernetes-cloud-deployment-diagram.jpg)
+
+## Setup
+Tutorial https://aws.plainenglish.io/running-kubernetes-using-minikube-cluster-on-the-aws-cloud-4259df916a07
+
+### Create EC2 instance
+- Choose ubuntu 18.04
+- Select T2 Medium (2 virtual CPUs are required)
+- Set up security rules
+  - HTTP --- port: 30000 - 32768 --- IPs: All ipv4
+- Launch
+
+### Installing kubectl
+- `curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl`
+- `chmod +x ./kubectl`
+- `sudo mv ./kubectl /usr/local/bin/kubectl`
+
+### Install Docker
+- `sudo apt-get install docker.io -y`
+
+### Install Minikube
+- `curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/`
+- Kubernetes requires conntrack `sudo apt install conntrack`
+
+### Starting Minikube
+- `sudo minikube start --vm-driver=none`
+
+## <br>Deployment
+
+### Copying the files to EC2
+- Create a folder on EC2 to store the `yml` files
+- `scp -i ~/.ssh/105.pem ~/SPARTA/105_sre/apiapp-deploy_AWS/apiapp-deploy.yml ubuntu@ec2-52-208-191-119.eu-west-1.compute.amazonaws.com:/home/ubuntu/apiappDeployment`
+- `scp -i ~/.ssh/105.pem ~/SPARTA/105_sre/apiapp-deploy_AWS/apiapp-svc.yml ubuntu@ec2-52-208-191-119.eu-west-1.compute.amazonaws.com:/home/ubuntu/apiappDeployment`
+
+
+### Creating the Deployment
+`sudo kubectl create -f apiapp-deploy.yml`
+
+```yml
+# YML is case sensitive
+apiVersion: apps/v1 # which api to use for deployment
+kind: Deployment # what kind of service/object you want to create
+
+# What would you like to call it
+metadata:
+  name: apiapp-deployment # naming the deployment
+
+spec:
+  selector:
+    matchLabels:
+      app: apiapp # look for this label to match with k8 service
+  
+  # Lets create a replica set of this with 2 instances/pods
+  replicas: 3
+
+  # template to use its label for k8 service to launch in the browser
+  template:
+    metadata:
+      labels:
+        app: apiapp # this label connects to the service or any other k8 components
+    
+    # lets define the container spec
+    spec:
+      containers:
+      - name: apiapp
+        image: dipojosh/105_sre_api:latest
+        ports:
+        - containerPort: 80
+```
+
+
+### <br>Creating the Service
+`sudo kubectl create -f apiapp-svc.yml`
+
+```yml
+# select the type of API version and type of service/object
+apiVersion: v1
+kind: Service
+
+# metadata for name
+metadata:
+  name: apiapp-svc
+  namespace: default # sre
+# specification to include ports selector to connect to the deploy
+spec:
+  ports:
+  - nodePort: 30442 # range is 30000 - 32768
+    port: 90
+    protocol: TCP
+    targetPort: 80
+
+# lets define the selector and label to connect to nginx deployment
+  selector:
+    app: apiapp # this label connects this service to deployment
+
+  # creating Nodeport type of deployment
+  type: NodePort
+```
+
+Check that everything is working by going to the public ip of the instance and using the port of the service (30442)
+Find out by running `sudo kubectl get all`
