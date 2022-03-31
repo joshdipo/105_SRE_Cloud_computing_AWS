@@ -549,7 +549,7 @@ ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
 ## <br>Kubernetes
 - Also known as K8
 - Benifits
-  - Self healing
+  - Self healing: When a node goes down for whatever reason, trafic is diverted from it and a new node is created to take its place
   - Load Balancing and Service Discorvery
   - Automated rollouts and rollback
   - Auto Scaling
@@ -646,7 +646,7 @@ Usage:
 - To codify anything and everthing in order to automate processess
 
 
-### <b><br>Deploying our custom nginx container and servic</b>
+### <b><br>Deploying our custom nginx container and service</b>
 
 <br>Deployment
 ```yml
